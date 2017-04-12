@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">folms</string>
+    <string name="drawer_open">accessibility</string>
+    <string name="drawer_close">accessibility</string>
+</resources>

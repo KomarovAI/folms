@@ -193,16 +193,16 @@ public class MainActivity extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_cat, container, false);
-            int i = getArguments().getInt(ARG_CAT_NUMBER);
-            // имена котов на англ. для нахождения имен файлов
-            String catName = getResources().getStringArray(R.array.cats_array)[i];
-
-            String catNameTitle = getResources().getStringArray(R.array.cats_array_ru)[i];
-
-            int imageId = getResources().getIdentifier(catName.toLowerCase(Locale.ROOT),
-                    "drawable", getActivity().getPackageName());
-            ((ImageView) rootView.findViewById(R.id.imageViewCat)).setImageResource(imageId);
-            getActivity().setTitle(catNameTitle);
+//            int i = getArguments().getInt(ARG_CAT_NUMBER);
+//            // имена котов на англ. для нахождения имен файлов
+//            String catName = getResources().getStringArray(R.array.cats_array)[i];
+//
+//            String catNameTitle = getResources().getStringArray(R.array.cats_array_ru)[i];
+//
+//            int imageId = getResources().getIdentifier(catName.toLowerCase(Locale.ROOT),
+//                    "drawable", getActivity().getPackageName());
+            ((ImageView) rootView.findViewById(R.id.imageViewCat)).setImageResource(R.drawable.qwe);
+//            getActivity().setTitle(catNameTitle);
             return rootView;
         }
     }

@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="cats_array_ru">
-        <item>Васька</item>
-        <item>Барсик</item>
-        <item>Мурзик</item>
-        <item>Рыжик</item>
-        <item>Кот Бегемот</item>
-        <item>Кот Матроскин</item>
-        <item>Бублик (у Экслера)</item>
-        <item>Дорофей (у Димона)</item>
+        <item>Новинки!</item>
+        <item>Сериалы</item>
+        <item>Жанры</item>
+        <item>Аниме</item>
+        <item>Попка Time!!!</item>
+        <item>Донат</item>
+        <item>Поддержка</item>
+        <item>О нас</item>
+    </string-array>
+
+    <string-array name="cats_array">
+        <item>vaska</item>
+        <item>barsik</item>
+        <item>murzik</item>
+        <item>ryzhik</item>
+        <item>begemot</item>
+        <item>matroskin</item>
+        <item>bublik</item>
+        <item>dorofey</item>
     </string-array>
 </resources>

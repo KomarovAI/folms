@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">folms</string>
+    <string name="action_websearch">го Дота!</string>
+    <string name="app_not_available">го Дота2!</string>
     <string name="drawer_open">accessibility</string>
     <string name="drawer_close">accessibility</string>
 </resources>

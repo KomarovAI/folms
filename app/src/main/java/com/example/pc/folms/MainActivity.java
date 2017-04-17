@@ -3,6 +3,9 @@ package com.example.pc.folms;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 
 import android.support.v4.app.Fragment;
@@ -18,13 +21,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.MediaController;
 import android.widget.Toast;
+import android.widget.VideoView;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
+import java.io.IOException;
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     private String[] mCatTitles;
     private CharSequence mTitle;
@@ -34,17 +45,34 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
 
+    //объявляю кнопки и всякую шнягу для загрузки с веба
+    ImageButton btn1;
+    ImageButton btn2;
+    ImageButton btn3;
+    Bitmap bitmap = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("DrawerLayout");
 
+
         mTitle = mDrawerTitle = getTitle();
         mCatTitles = getResources().getStringArray(R.array.cats_array_ru);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerListView = (ListView) findViewById(R.id.left_drawer);
+
+        //определяю айдишники кнопкам.
+        btn1 = (ImageButton) findViewById(R.id.btn1);
+        btn2 =(ImageButton) findViewById(R.id.btn2);
+        btn3 = (ImageButton) findViewById(R.id.btn3);
+//добавляю кнопки в слушатель
+        btn1.setOnClickListener((View.OnClickListener) this);
+        btn2.setOnClickListener((View.OnClickListener) this);
+        btn3.setOnClickListener((View.OnClickListener) this);
+
 
         // Тень при открытии панели. По желанию
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
@@ -83,7 +111,43 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             selectItem(0);
         }
+
+        //Задаю картинки на кнопки с веба GetImg описан в отдельном классе файле
+        GetImg getImg = new GetImg(this);
+        getImg.execute("http://topfilmec.ddns.net/img/0001.png");//ссылка на картинку
+        try {
+            bitmap = getImg.get();
+        } catch (Exception e) {
+        }
+        btn1.setImageBitmap(bitmap);
+        GetImg getImg2 = new GetImg(this);
+        getImg2.execute("http://topfilmec.ddns.net/img/0002.png");//ссылка на картинку
+        try {
+            bitmap = getImg2.get();
+        } catch (Exception e) {
+        }
+        btn2.setImageBitmap(bitmap);
+        GetImg getImg3 = new GetImg(this);
+        getImg3.execute("http://topfilmec.ddns.net/img/0003.png");//ссылка на картинку
+        try {
+            bitmap = getImg3.get();
+        } catch (Exception e) {
+        }
+        btn3.setImageBitmap(bitmap);
     }
+
+    //Обработка нажатий кнопок с фильмами
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn1:
+                Intent intent = new Intent(this, ActivityFilm.class);
+                startActivity(intent);
+                break;
+            default:
+                break;
+        }
+    }
+
 
     //  Слушатель для элементов списка в выдвижной панели
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
@@ -201,7 +265,7 @@ public class MainActivity extends AppCompatActivity {
 //
 //            int imageId = getResources().getIdentifier(catName.toLowerCase(Locale.ROOT),
 //                    "drawable", getActivity().getPackageName());
-            ((ImageView) rootView.findViewById(R.id.imageViewCat)).setImageResource(R.drawable.qwe);
+          //  ((ImageView) rootView.findViewById(R.id.imageViewCat)).setImageResource(R.drawable.qwe);
 //            getActivity().setTitle(catNameTitle);
             return rootView;
         }
